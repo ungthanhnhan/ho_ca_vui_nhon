@@ -1,0 +1,18 @@
+.aquarium {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    background: url('sea_background.png') no-repeat center center;
+    background-size: cover;
+    overflow: hidden;
+}
+
+.diver, .shark, .turtle {
+    position: absolute;
+}
+
+#diver1 { top: 20%; left: 10%; }
+#diver2 { top: 50%; left: 15%; }
+#diver3 { top: 80%; left: 20%; }
+.shark { top: 30%; left: 80%; }
+.turtle { top: 60%; left: 70%; }
