@@ -32,71 +32,95 @@ p {
 /* Các đối tượng di chuyển */
 .diver, .shark, .turtle, .fish {
     position: absolute;
-    animation: swim-random 10s linear infinite;
     will-change: transform;
 }
 
-/* Thợ lặn: Bơi ngẫu nhiên lên xuống */
-.diver {
+/* Thợ lặn: Bơi lên xuống ngẫu nhiên */
+.diver1 {
     width: 80px;
-    animation-duration: 12s;
+    animation: diver1Move 10s linear infinite alternate;
 }
 
-/* Cá mập: Bơi nhanh và quay lại khi chạm tường */
+.diver2 {
+    width: 80px;
+    animation: diver2Move 12s linear infinite alternate;
+}
+
+/* Cá mập: Bơi ngang và đổi hướng khi chạm tường */
 .shark {
     width: 150px;
-    animation-duration: 15s;
-    transform: scaleX(1); /* Đổi hướng khi va tường */
+    animation: sharkMove 15s linear infinite;
 }
 
-/* Rùa: Bơi chậm */
+/* Rùa: Bơi chậm, lên xuống nhẹ nhàng */
 .turtle {
     width: 100px;
-    animation-duration: 20s;
+    animation: turtleMove 20s linear infinite;
 }
 
 /* Cá nhỏ: Bơi khắp nơi theo các hướng ngẫu nhiên */
-.fish {
+.fish1 {
     width: 60px;
-    animation-duration: 10s;
-    animation-direction: alternate;
+    animation: fish1Move 8s linear infinite;
 }
 
-/* Hiệu ứng bơi ngẫu nhiên */
-@keyframes swim-random {
-    0% {
-        transform: translate(0, 0) rotate(0deg);
-    }
-    25% {
-        transform: translate(30vw, 20vh) rotate(45deg);
-    }
-    50% {
-        transform: translate(60vw, -10vh) rotate(90deg);
-    }
-    75% {
-        transform: translate(80vw, 30vh) rotate(135deg);
-    }
-    100% {
-        transform: translate(100vw, 0) rotate(180deg);
-    }
+.fish2 {
+    width: 60px;
+    animation: fish2Move 10s linear infinite;
 }
 
-/* Hiệu ứng bọt biển */
-.bubble {
-    position: absolute;
-    bottom: 0;
-    background-color: rgba(255, 255, 255, 0.6);
-    border-radius: 50%;
-    opacity: 0.8;
-    animation: bubble-rise 8s linear infinite;
+.fish3 {
+    width: 60px;
+    animation: fish3Move 12s linear infinite;
 }
 
-.bubble1 { width: 10px; height: 10px; left: 20%; animation-duration: 6s; }
-.bubble2 { width: 15px; height: 15px; left: 40%; animation-duration: 7s; }
-.bubble3 { width: 8px; height: 8px; left: 60%; animation-duration: 5s; }
-.bubble4 { width: 12px; height: 12px; left: 80%; animation-duration: 9s; }
-
-@keyframes bubble-rise {
-    0% { transform: translateY(0); opacity: 0.8; }
-    100% { transform: translateY(-80vh); opacity: 0; }
+/* Hiệu ứng bơi ngẫu nhiên cho từng sinh vật */
+@keyframes diver1Move {
+    0% { transform: translate(0, 0); }
+    25% { transform: translate(20vw, 10vh); }
+    50% { transform: translate(40vw, -5vh); }
+    75% { transform: translate(60vw, 15vh); }
+    100% { transform: translate(80vw, 0); }
 }
+
+@keyframes diver2Move {
+    0% { transform: translate(0, 5vh); }
+    25% { transform: translate(25vw, -10vh); }
+    50% { transform: translate(50vw, 5vh); }
+    75% { transform: translate(75vw, -15vh); }
+    100% { transform: translate(100vw, 5vh); }
+}
+
+@keyframes sharkMove {
+    0% { transform: translateX(-150px) scaleX(1); }
+    50% { transform: translateX(100vw) scaleX(-1); }
+    100% { transform: translateX(-150px) scaleX(1); }
+}
+
+@keyframes turtleMove {
+    0% { transform: translate(100vw, 0); }
+    50% { transform: translate(50vw, 10vh); }
+    100% { transform: translate(0, -10vh); }
+}
+
+@keyframes fish1Move {
+    0% { transform: translate(0, 0); }
+    25% { transform: translate(15vw, -5vh); }
+    50% { transform: translate(30vw, 5vh); }
+    75% { transform: translate(45vw, -10vh); }
+    100% { transform: translate(60vw, 0); }
+}
+
+@keyframes fish2Move {
+    0% { transform: translate(0, -10vh); }
+    25% { transform: translate(20vw, 0); }
+    50% { transform: translate(40vw, -5vh); }
+    75% { transform: translate(60vw, 10vh); }
+    100% { transform: translate(80vw, -5vh); }
+}
+
+@keyframes fish3Move {
+    0% { transform: translate(0, 10vh); }
+    25% { transform: translate(30vw, -5vh); }
+    50% { transform: translate(50vw, 5vh); }
+   
