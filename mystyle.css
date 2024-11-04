@@ -1,0 +1,77 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #e0f7fa;
+    overflow: hidden;
+}
+
+.aquarium {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background-color: #a2d2ff;
+}
+
+.diver {
+    position: absolute;
+    width: 100px;
+    animation: swim-up-down 4s infinite ease-in-out alternate;
+}
+
+.diver1 {
+    top: 20%;
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.diver2 {
+    top: 30%;
+    left: 20%;
+    animation-delay: 1s;
+}
+
+.diver3 {
+    top: 40%;
+    left: 30%;
+    animation-delay: 2s;
+}
+
+.shark {
+    position: absolute;
+    width: 200px;
+    top: 10%;
+    animation: swim-left-right 10s infinite linear;
+}
+
+.turtle {
+    position: absolute;
+    width: 150px;
+    top: 50%;
+    animation: swim-left-right 15s infinite linear reverse;
+}
+
+.faintSchool, .goldFishSchool {
+    position: absolute;
+    width: 200px;
+    top: 70%;
+    animation: swim-left-right 8s infinite linear;
+}
+
+@keyframes swim-left-right {
+    0% { left: -200px; }
+    100% { left: 100vw; }
+}
+
+@keyframes swim-up-down {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-30px); }
+}
