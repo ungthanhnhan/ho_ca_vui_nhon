@@ -1,23 +1,30 @@
+/* Thiết lập cơ bản cho trang */
 body {
     background-color: #b3ecff;
-    margin: 0;
+    text-align: center;
     font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
+/* Vùng hồ cá */
 #aquarium {
     position: relative;
     width: 100%;
-    height: 100vh;
+    height: 80vh;
     overflow: hidden;
+    background-image: url('images/background.png'); /* Nếu có hình nền, thêm đường dẫn này */
+    background-size: cover;
 }
 
-.diver, .shark, .turtle, .fish-school {
+/* Các đối tượng di chuyển */
+.diver, .shark, .turtle {
     position: absolute;
-    animation: moveAround 10s infinite alternate;
+    animation: swim 10s linear infinite;
 }
 
-/* Ví dụ về cách di chuyển */
-@keyframes moveAround {
-    0% { transform: translateX(0); }
+/* Hiệu ứng bơi ngang cho các hình */
+@keyframes swim {
+    0% { transform: translateX(-100px); }
     100% { transform: translateX(100vw); }
 }
