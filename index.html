@@ -1,28 +1,102 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hồ Cá Vui Nhộn</title>
-    <link rel="stylesheet" href="mystyle.css">
-</head>
-<body>
-    <h1>Hồ Cá Vui Nhộn</h1>
-    <p>Thưởng thức hồ cá sinh động với các loài sinh vật biển!</p>
-    <div id="aquarium">
-        <!-- Thêm nhiều cá, thợ lặn và các sinh vật khác -->
-        <img src="images/diver1.png" class="diver" alt="Thợ lặn 1">
-        <img src="images/diver2.png" class="diver" alt="Thợ lặn 2">
-        <img src="images/shark.png" class="shark" alt="Cá mập">
-        <img src="images/turtle.png" class="turtle" alt="Rùa">
-        <img src="images/fish1.png" class="fish" alt="Cá nhỏ 1">
-        <img src="images/fish2.png" class="fish" alt="Cá nhỏ 2">
-        <img src="images/fish3.png" class="fish" alt="Cá nhỏ 3">
-        <!-- Hiệu ứng bọt biển -->
-        <div class="bubble bubble1"></div>
-        <div class="bubble bubble2"></div>
-        <div class="bubble bubble3"></div>
-        <div class="bubble bubble4"></div>
-    </div>
-</body>
-</html>
+/* Thiết lập cơ bản cho trang */
+body {
+    background-color: #0077be;
+    color: white;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Tiêu đề và đoạn văn */
+h1 {
+    margin-top: 20px;
+    font-size: 2.5em;
+}
+
+p {
+    margin-bottom: 20px;
+    font-size: 1.2em;
+}
+
+/* Vùng hồ cá */
+#aquarium {
+    position: relative;
+    width: 100%;
+    height: 80vh;
+    overflow: hidden;
+    background-image: url('images/aquarium-background.jpg'); /* Nếu có hình nền, thêm vào đây */
+    background-size: cover;
+}
+
+/* Các đối tượng di chuyển */
+.diver, .shark, .turtle, .fish {
+    position: absolute;
+    animation: swim-random 10s linear infinite;
+    will-change: transform;
+}
+
+/* Thợ lặn: Bơi ngẫu nhiên lên xuống */
+.diver {
+    width: 80px;
+    animation-duration: 12s;
+}
+
+/* Cá mập: Bơi nhanh và quay lại khi chạm tường */
+.shark {
+    width: 150px;
+    animation-duration: 15s;
+    transform: scaleX(1); /* Đổi hướng khi va tường */
+}
+
+/* Rùa: Bơi chậm */
+.turtle {
+    width: 100px;
+    animation-duration: 20s;
+}
+
+/* Cá nhỏ: Bơi khắp nơi theo các hướng ngẫu nhiên */
+.fish {
+    width: 60px;
+    animation-duration: 10s;
+    animation-direction: alternate;
+}
+
+/* Hiệu ứng bơi ngẫu nhiên */
+@keyframes swim-random {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+    25% {
+        transform: translate(30vw, 20vh) rotate(45deg);
+    }
+    50% {
+        transform: translate(60vw, -10vh) rotate(90deg);
+    }
+    75% {
+        transform: translate(80vw, 30vh) rotate(135deg);
+    }
+    100% {
+        transform: translate(100vw, 0) rotate(180deg);
+    }
+}
+
+/* Hiệu ứng bọt biển */
+.bubble {
+    position: absolute;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: bubble-rise 8s linear infinite;
+}
+
+.bubble1 { width: 10px; height: 10px; left: 20%; animation-duration: 6s; }
+.bubble2 { width: 15px; height: 15px; left: 40%; animation-duration: 7s; }
+.bubble3 { width: 8px; height: 8px; left: 60%; animation-duration: 5s; }
+.bubble4 { width: 12px; height: 12px; left: 80%; animation-duration: 9s; }
+
+@keyframes bubble-rise {
+    0% { transform: translateY(0); opacity: 0.8; }
+    100% { transform: translateY(-80vh); opacity: 0; }
+}
