@@ -25,56 +25,78 @@ p {
     width: 100%;
     height: 80vh;
     overflow: hidden;
-    background-image: url('images/aquarium-background.jpg'); /* Thêm hình nền hồ cá nếu có */
+    background-image: url('images/aquarium-background.jpg'); /* Nếu có hình nền, thêm vào đây */
     background-size: cover;
 }
 
 /* Các đối tượng di chuyển */
-.diver, .shark, .turtle, .fish-school {
+.diver, .shark, .turtle, .fish {
     position: absolute;
-    animation: swim linear infinite;
+    animation: swim-random 10s linear infinite;
+    will-change: transform;
 }
 
-/* Thợ lặn: Bơi lên xuống */
+/* Thợ lặn: Bơi ngẫu nhiên lên xuống */
 .diver {
+    width: 80px;
+    animation-duration: 12s;
+}
+
+/* Cá mập: Bơi nhanh và quay lại khi chạm tường */
+.shark {
+    width: 150px;
+    animation-duration: 15s;
+    transform: scaleX(1); /* Đổi hướng khi va tường */
+}
+
+/* Rùa: Bơi chậm */
+.turtle {
     width: 100px;
-    animation-duration: 8s;
+    animation-duration: 20s;
+}
+
+/* Cá nhỏ: Bơi khắp nơi theo các hướng ngẫu nhiên */
+.fish {
+    width: 60px;
+    animation-duration: 10s;
     animation-direction: alternate;
 }
 
-@keyframes swim {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(20vh); }
+/* Hiệu ứng bơi ngẫu nhiên */
+@keyframes swim-random {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+    25% {
+        transform: translate(30vw, 20vh) rotate(45deg);
+    }
+    50% {
+        transform: translate(60vw, -10vh) rotate(90deg);
+    }
+    75% {
+        transform: translate(80vw, 30vh) rotate(135deg);
+    }
+    100% {
+        transform: translate(100vw, 0) rotate(180deg);
+    }
 }
 
-/* Cá mập: Bơi ngang nhanh */
-.shark {
-    width: 150px;
-    top: 20%;
-    animation: sharkSwim 12s linear infinite;
+/* Hiệu ứng bọt biển */
+.bubble {
+    position: absolute;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: bubble-rise 8s linear infinite;
 }
 
-@keyframes sharkSwim {
-    0% { transform: translateX(-150px); }
-    100% { transform: translateX(100vw); }
-}
+.bubble1 { width: 10px; height: 10px; left: 20%; animation-duration: 6s; }
+.bubble2 { width: 15px; height: 15px; left: 40%; animation-duration: 7s; }
+.bubble3 { width: 8px; height: 8px; left: 60%; animation-duration: 5s; }
+.bubble4 { width: 12px; height: 12px; left: 80%; animation-duration: 9s; }
 
-/* Rùa: Bơi ngang chậm */
-.turtle {
-    width: 100px;
-    top: 70%;
-    animation: turtleSwim 20s linear infinite;
+@keyframes bubble-rise {
+    0% { transform: translateY(0); opacity: 0.8; }
+    100% { transform: translateY(-80vh); opacity: 0; }
 }
-
-@keyframes turtleSwim {
-    0% { transform: translateX(100vw); }
-    100% { transform: translateX(-150px); }
-}
-
-/* Đàn cá: Bơi theo nhóm */
-.fish-school {
-    width: 120px;
-    animation: fishSwim 15s ease-in-out infinite;
-}
-
-@keyframes
