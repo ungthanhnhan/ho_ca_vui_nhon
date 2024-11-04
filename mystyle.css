@@ -123,4 +123,26 @@ p {
     0% { transform: translate(0, 10vh); }
     25% { transform: translate(30vw, -5vh); }
     50% { transform: translate(50vw, 5vh); }
-   
+    75% { transform: translate(70vw, -10vh); }
+    100% { transform: translate(100vw, 0); }
+}
+
+/* Hiệu ứng bọt biển */
+.bubble {
+    position: absolute;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: bubble-rise 8s linear infinite;
+}
+
+.bubble1 { width: 10px; height: 10px; left: 20%; animation-duration: 6s; }
+.bubble2 { width: 15px; height: 15px; left: 40%; animation-duration: 7s; }
+.bubble3 { width: 8px; height: 8px; left: 60%; animation-duration: 5s; }
+.bubble4 { width: 12px; height: 12px; left: 80%; animation-duration: 9s; }
+
+@keyframes bubble-rise {
+    0% { transform: translateY(0); opacity: 0.8; }
+    100% { transform: translateY(-80vh); opacity: 0; }
+}
