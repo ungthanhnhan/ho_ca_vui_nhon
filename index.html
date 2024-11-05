@@ -31,8 +31,8 @@
         }
         .object {
             position: absolute;
-            transition: transform 0.5s;
-            max-width: 10%;
+            max-width: 100px;
+            max-height: 100px;
         }
         .bubble {
             width: 20px;
@@ -47,22 +47,6 @@
         @keyframes rise {
             0% { transform: translateY(0); opacity: 0.8; }
             100% { transform: translateY(-100vh); opacity: 0; }
-        }
-        @media (min-aspect-ratio: 16/9) {
-            h1 {
-                font-size: 3em;
-            }
-            .object {
-                width: 80px;
-            }
-        }
-        @media (max-aspect-ratio: 16/9) {
-            h1 {
-                font-size: 2em;
-            }
-            .object {
-                width: 50px;
-            }
         }
     </style>
 </head>
@@ -81,6 +65,13 @@
         const objects = ["diver1", "diver2", "diver3", "turtle", "faintschool", "goldfishschool", "shark"];
         const objectElements = objects.map(id => document.getElementById(id));
         const directions = objectElements.map(() => ({ x: Math.random() * 2 - 1, y: Math.random() * 2 - 1 }));
+
+        function initializePositions() {
+            objectElements.forEach(element => {
+                element.style.left = `${Math.random() * (window.innerWidth - element.width)}px`;
+                element.style.top = `${Math.random() * (window.innerHeight - element.height)}px`;
+            });
+        }
 
         function updatePositions() {
             objectElements.forEach((element, index) => {
@@ -107,14 +98,11 @@
                 bubble.style.left = `${Math.random() * window.innerWidth}px`;
                 document.body.appendChild(bubble);
                 bubble.addEventListener('animationend', () => bubble.remove());
-            }, 1500); // Giảm số lần tạo bọt để tăng hiệu suất
+            }, 1500);
         }
 
         window.onload = () => {
-            objectElements.forEach(element => {
-                element.style.left = `${Math.random() * (window.innerWidth - element.width)}px`;
-                element.style.top = `${Math.random() * (window.innerHeight - element.height)}px`;
-            });
+            initializePositions();
             requestAnimationFrame(updatePositions);
             createBubbles();
         };
