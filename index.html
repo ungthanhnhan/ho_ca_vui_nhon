@@ -33,6 +33,7 @@
             position: absolute;
             max-width: 100px;
             max-height: 100px;
+            transform-origin: center center;
         }
         .bubble {
             width: 20px;
@@ -82,11 +83,15 @@
                 if (x <= 0 || x >= window.innerWidth - rect.width) directions[index].x *= -1;
                 if (y <= 0 || y >= window.innerHeight - rect.height) directions[index].y *= -1;
 
-                x += directions[index].x * 3;
-                y += directions[index].y * 3;
+                x += directions[index].x * 1.5;  // Giảm tốc độ di chuyển
+                y += directions[index].y * 1.5;
 
                 element.style.left = `${x}px`;
                 element.style.top = `${y}px`;
+
+                // Tính toán góc xoay dựa trên hướng di chuyển
+                const angle = Math.atan2(directions[index].y, directions[index].x) * (180 / Math.PI);
+                element.style.transform = `rotate(${angle}deg)`;
             });
             requestAnimationFrame(updatePositions);
         }
