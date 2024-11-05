@@ -34,6 +34,7 @@
             max-width: 100px;
             max-height: 100px;
             transform-origin: center center;
+            transition: transform 0.5s;
         }
         .bubble {
             width: 20px;
@@ -89,9 +90,24 @@
                 element.style.left = `${x}px`;
                 element.style.top = `${y}px`;
 
-                // Tính toán góc xoay dựa trên hướng di chuyển
-                const angle = Math.atan2(directions[index].y, directions[index].x) * (180 / Math.PI);
-                element.style.transform = `rotate(${angle}deg)`;
+                // Xác định góc quay và lật hình dựa trên hướng di chuyển
+                if (directions[index].x > 0) {
+                    if (directions[index].y > 0) {
+                        element.style.transform = `rotate(45deg) scaleX(1)`;  // Bơi xéo xuống phải
+                    } else if (directions[index].y < 0) {
+                        element.style.transform = `rotate(-45deg) scaleX(1)`;  // Bơi xéo lên phải
+                    } else {
+                        element.style.transform = `rotate(0deg) scaleX(1)`;  // Bơi thẳng sang phải
+                    }
+                } else {
+                    if (directions[index].y > 0) {
+                        element.style.transform = `rotate(-45deg) scaleX(-1)`;  // Bơi xéo xuống trái và lật
+                    } else if (directions[index].y < 0) {
+                        element.style.transform = `rotate(45deg) scaleX(-1)`;  // Bơi xéo lên trái và lật
+                    } else {
+                        element.style.transform = `rotate(0deg) scaleX(-1)`;  // Bơi thẳng sang trái và lật
+                    }
+                }
             });
             requestAnimationFrame(updatePositions);
         }
