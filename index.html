@@ -2,27 +2,119 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hồ Cá Vui Nhộn</title>
-    <link rel="stylesheet" href="mystyle.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>HỒ CÁ VUI NHỘN</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #87CEEB;
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        h1 {
+            text-align: center;
+            font-size: 2.5em;
+            color: #ffffff;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .object {
+            position: absolute;
+            transition: transform 0.5s;
+        }
+        .bubble {
+            width: 20px;
+            height: 20px;
+            background-color: #FFFFFF;
+            border-radius: 50%;
+            position: absolute;
+            bottom: 0;
+            opacity: 0.8;
+            animation: rise 5s infinite linear;
+        }
+        @keyframes rise {
+            0% { transform: translateY(0); opacity: 0.8; }
+            100% { transform: translateY(-100vh); opacity: 0; }
+        }
+        @media (min-aspect-ratio: 16/9) {
+            h1 {
+                font-size: 3em;
+            }
+            .object {
+                width: 80px;
+            }
+        }
+        @media (max-aspect-ratio: 16/9) {
+            h1 {
+                font-size: 2em;
+            }
+            .object {
+                width: 50px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h1>Hồ Cá Vui Nhộn</h1>
-    <p>Thưởng thức hồ cá sinh động với các loài sinh vật biển!</p>
-    <div id="aquarium">
-        <!-- Các sinh vật biển -->
-        <img src="images/diver1.png" class="diver diver1" alt="Thợ lặn 1">
-        <img src="images/diver2.png" class="diver diver2" alt="Thợ lặn 2">
-        <img src="images/shark.png" class="shark" alt="Cá mập">
-        <img src="images/turtle.png" class="turtle" alt="Rùa">
-        <img src="images/fish1.png" class="fish fish1" alt="Cá nhỏ 1">
-        <img src="images/fish2.png" class="fish fish2" alt="Cá nhỏ 2">
-        <img src="images/fish3.png" class="fish fish3" alt="Cá nhỏ 3">
-        <!-- Hiệu ứng bọt biển -->
-        <div class="bubble bubble1"></div>
-        <div class="bubble bubble2"></div>
-        <div class="bubble bubble3"></div>
-        <div class="bubble bubble4"></div>
+    <h1>HỒ CÁ VUI NHỘN</h1>
+    <div class="container">
+        <img src="diver1.png" class="object" id="diver1">
+        <img src="diver2.png" class="object" id="diver2">
+        <img src="diver3.png" class="object" id="diver3">
+        <img src="turtle.png" class="object" id="turtle">
+        <img src="faintschool.png" class="object" id="faintschool">
+        <img src="goldfishschool.png" class="object" id="goldfishschool">
+        <img src="shark.png" class="object" id="shark">
     </div>
+    <script>
+        const objects = ["diver1", "diver2", "diver3", "turtle", "faintschool", "goldfishschool", "shark"];
+        function randomMovement() {
+            objects.forEach(id => {
+                const element = document.getElementById(id);
+                element.style.left = `${Math.random() * window.innerWidth}px`;
+                element.style.top = `${Math.random() * window.innerHeight}px`;
+            });
+        }
+        function createBubbles() {
+            setInterval(() => {
+                const bubble = document.createElement('div');
+                bubble.classList.add('bubble');
+                bubble.style.left = `${Math.random() * window.innerWidth}px`;
+                document.body.appendChild(bubble);
+                bubble.addEventListener('animationend', () => bubble.remove());
+            }, 500);
+        }
+        function bounceMovement() {
+            objects.forEach(id => {
+                const element = document.getElementById(id);
+                let x = Math.random() * window.innerWidth;
+                let y = Math.random() * window.innerHeight;
+                let dx = Math.random() * 2 - 1;
+                let dy = Math.random() * 2 - 1;
+                setInterval(() => {
+                    if (x < 0 || x > window.innerWidth - element.width) dx *= -1;
+                    if (y < 0 || y > window.innerHeight - element.height) dy *= -1;
+                    x += dx * 5;
+                    y += dy * 5;
+                    element.style.transform = `translate(${x}px, ${y}px)`;
+                }, 50);
+            });
+        }
+        window.onload = () => {
+            randomMovement();
+            bounceMovement();
+            createBubbles();
+        };
+    </script>
 </body>
 </html>
