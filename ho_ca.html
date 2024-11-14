@@ -31,8 +31,8 @@
         }
         .object {
             position: absolute;
-            max-width: 100px;
-            max-height: 100px;
+            max-width: 10vw;  /* Adjusts object size based on viewport width */
+            max-height: 10vh;  /* Adjusts object size based on viewport height */
             transform-origin: center center;
             transition: transform 0.5s;
         }
@@ -49,6 +49,33 @@
         @keyframes rise {
             0% { transform: translateY(0); opacity: 0.8; }
             100% { transform: translateY(-100vh); opacity: 0; }
+        }
+
+        /* Responsive Design */
+        @media (orientation: landscape) {
+            /* For desktop and landscape mode */
+            .container {
+                width: 100%;
+                height: 100vh;
+            }
+            h1 {
+                font-size: 2.5em;
+            }
+        }
+
+        @media (orientation: portrait) {
+            /* For mobile portrait mode */
+            .container {
+                width: 100%;
+                height: 100vh;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            .object {
+                max-width: 15vw;  /* Slightly larger objects for mobile screens */
+                max-height: 15vh;
+            }
         }
     </style>
 </head>
