@@ -12,16 +12,26 @@
         }
         body {
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             background-color: #87CEEB;
             overflow: hidden;
             min-height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            font-size: 2em;
+            color: #ffffff;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+            margin: 20px 0;
+            text-align: center;
         }
         .container {
             position: relative;
             width: 100%;
-            height: 100vh;
+            height: calc(100vh - 80px);
+            max-width: 100vw;
             overflow: hidden;
             display: flex;
             align-items: center;
@@ -30,7 +40,7 @@
         .object {
             position: absolute;
             width: 10vw;
-            height: 10vw;
+            height: auto;
             max-width: 100px;
             max-height: 100px;
             transition: transform 0.5s;
@@ -54,24 +64,17 @@
                 width: 100vw;
                 height: 56.25vw;
             }
-            .object {
-                width: 7vw;
-                height: 7vw;
-            }
         }
         @media (orientation: portrait) {
             .container {
                 width: 100vw;
-                height: 195vw;
-            }
-            .object {
-                width: 12vw;
-                height: 12vw;
+                height: 100vh;
             }
         }
     </style>
 </head>
 <body>
+    <h1>HỒ CÁ VUI NHỘN</h1>
     <div class="container">
         <img src="images/diver1.png" class="object" id="diver1" alt="diver1">
         <img src="images/diver2.png" class="object" id="diver2" alt="diver2">
